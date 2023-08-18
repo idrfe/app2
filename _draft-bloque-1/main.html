@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- custom CSS from file
+    <link rel="stylesheet" type="text/css" rel="noopener" target="_blank" href="styles.css">
+    -->
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+
+        body {
+            background-color: #f4f4f4;
+            margin: 0;
+            height: 100vh;
+        }
+         .container-header {
+         display: flex;
+         flex-direction: row;
+         height:40px; /* Set the flex direction to row to align items side by side */
+         }
+         .header{
+         background-color:#013058;
+         padding:0px;
+         height:100%;
+         width:85%;
+         position:relative;
+         }
+         .tabs{
+         background-color:#013058;
+         padding:0px;
+         height:100%;
+         width:15%;
+         position:relative;
+         background-color:#013058;
+         display: flex;
+         flex-direction: row;
+         }
+         .tabs > .tab {
+         background-color:#013058;
+         }
+         .tab {
+         flex: 1;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         cursor: pointer;
+         }
+         .selector {
+         flex: 1;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 100%;
+         padding:0;
+         }
+         #selector-1,
+         #selector-2{
+         border-right:1px solid white;
+         }
+         #selector-1,
+         #selector-2,
+         #selector-3{
+         color:white;
+         font-weight:600;
+         font-family:'arial';
+         font-size:12px;
+         }
+         .selector-content{
+         padding:20px;
+         }
+         .container-section {
+         padding-left:7.5%;
+         padding-right:7.5%;
+         display: flex;
+         flex-direction: row;
+         height:650px;
+         background-color: #f4f4f4; /* Set the flex direction to row to align items side by side */
+         }
+         .table-section {
+         height:100%;
+         background-color:#eaeaea;
+         width: 100vw;
+         padding-left:5%;
+         display:flex;
+         flex-direction:row; /* Set the flex direction to row to align items side by side */
+         }
+         .left-menu {
+         flex: 0 0 27.5%;
+         margin-top:20px;
+         height:610px;
+         margin-bottom:20px;
+         margin-right:7.5px;
+         margin-left:10px;
+         background-color: #f4f4f4;
+         box-sizing:border-box;
+         }
+         .right-menu {
+         flex: 0 0 27.5%;
+         margin-top:20px;
+         margin-bottom:20px;
+         margin-right:10px;
+         margin-left:7.5px;
+         background-color: #f4f4f4;
+         }
+         .data-space {
+         margin-top:20px;
+         flex: 0 0 45%;
+         margin-bottom:20px;
+         background-color: #f4f4f4;
+         display: flex;
+         flex-direction: column;
+         }
+
+         .data-space-expanded {
+            margin-top:20px;
+            flex: 0 0 100%;
+            margin-bottom:20px;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            margin:10px;
+
+         }
+         .title{
+         background-color:#f9f9f9;
+         height:40px;
+         border-radius: 8px 8px 0 0;
+         }
+         .bullet-space{
+         background-color:#ffffff;
+         padding:35px;
+         height:100%;
+         padding-right:88px;
+         padding-left:88px;
+         border-radius: 0px 0px 8px 8px;
+         }
+         .subheader {
+            margin-top: 0px;
+            background-color: #ffffff;
+            padding: 0px;
+            height: 200px;
+            /* Adjust the height of the subheader as needed */
+            width: 100%;
+            position: relative;
+            background-color: #357796;
+        }
+         p {
+         text-align:justify;
+         line-height:28.5px;
+         font-family:'arial';
+         font-size:9pt;
+         }
+         #table-container{
+         flex: 40%;
+         border: 0px solid #000;
+         height:90%;
+         padding:20px;
+         justify-content:center;
+         overflow-y: auto; /* Enable vertical scrollbar */
+         overflow-x: hidden; /* Hide horizontal scrollbar */
+         direction: rtl; /* Set text direction to right-to-left */
+         writing-mode: horizontal-tb; /* Set writing mode to horizontal */
+         }
+         .spread {
+         flex: 30%;
+         border: 0px solid #000;
+         padding-top:40px;
+         padding-left:40px;
+         padding-bottom:80px;
+         padding-right:40px;/* Optional: Add border for visibility */
+         }
+         #spread-container {
+         flex: 25%;
+         border: 0px solid #000;
+         width:100%;
+         height:100%;/* Optional: Add border for visibility */
+         }
+         .chart-header {
+         margin-bottom:7.5px;
+         text-align:center;
+         font-family:"Helvetica";
+         font-size:19.2px;
+         font-weight:bold;
+         color:#333333
+         }
+         .chart-subheader {
+         margin-bottom:20px;
+         text-align:center;
+         font-family:"Helvetica";
+         font-size:12.8px;
+         color:#666666
+         }
+         .region {
+         flex: 30%;
+         border: 0px solid #000;
+         padding-top:40px;
+         padding-left:40px;
+         padding-bottom:80px;
+         padding-right:40px;/* Optional: Add border for visibility */
+         }
+         #region-container {
+         flex: 20%;
+         border: 0px solid #000;
+         width:100%;
+         padding-bottom:20px;
+         height:95%;/* Optional: Add border for visibility */
+         }
+         .region-header {
+         margin-bottom:20px;
+         text-align:center;
+         font-family:"Arial";
+         font-weight:bold;
+         color:rgb(30,30,30)
+         }
+         
+         #insights-header{
+         font-family:"Verdana";
+         color:#236e90;
+         font-size:16px;
+         font-weight:bold;
+         margin-top:10px;
+         margin-left:30px;
+         text-align:left;
+         height:25px;
+         }
+
+         .container-right-top{
+         padding-top:18px;
+         padding-bottom:20px;
+         padding-left:10px;
+         padding-right:10px;
+         margin-bottom:10px;
+         background-color:white;
+         border-radius:0 0 8px 8px;
+         height:calc((100% - 33px) * 0.5)
+         }
+         .container-right-bottom{
+         background-color:white;
+         border-radius:0 0 8px 8px;
+         padding-top:20px;
+         padding-bottom:20px;
+         padding-left:10px;
+         padding-right:10px;
+         height:calc((100% - 33px) * 0.5)
+         }
+
+         .container-left-top{
+         padding-top:20px;
+         padding-bottom:20px;
+         padding-left:15px;
+         padding-right:15px;
+         margin-bottom:10px;
+         background-color:white;
+         border-radius:0 0 8px 8px;
+         height:calc((100% - 54.25px) * 0.5)
+         }
+         .container-left-bottom{
+         padding-top:20px;
+         padding-bottom:20px;
+         padding-left:10px;
+         padding-right:10px;
+         background-color:white;
+         border-radius:0 0 8px 8px;
+         height:calc((100% - 54.25px) * 0.5)
+         }
+         .title-subtitle{
+            flex:1;
+         }
+         #title{
+         color:#f9f9f9;
+         font-family:'arial';
+         font-size:40px;
+         font-weight:900;
+         text-align:center;
+         transform:translate(325px, 40px)
+      
+
+         }
+         #subtitle{
+         color:white;
+         font-family:'arial';
+         font-size:16px;
+         font-weight:600;
+         text-align:center;
+         transform:translate(325px, 52.5px)
+
+         }
+         .menu-container {
+         background-color: #dbdbdb;
+         display: flex;
+         justify-content: space-around;
+         align-items: center;
+         height: 50px;
+         }
+         .menu-container > .selector {
+         background-color: #dbdbdb;
+         }
+         .menu-item {
+         cursor: pointer;
+         padding: 10px;
+         font-family: 'arial';
+         font-size: 12px;
+         font-weight: 600;
+         color: #333333;
+         }
+         .menu-item:hover {
+         background-color: #d1d1d1;
+         border-radius: 8px;
+         }
+         .content {
+         height:750px;
+         }
+         #content-block1,
+         #content-block2,
+         #content-block3 {
+         background-color: #dbdbdb;
+         }
+         .arrow {
+         cursor: pointer;
+         font-size: 24px;
+         margin: 0 10px;
+         }
+         .menu-item.active-menu-item {
+         background-color: white;
+         border-radius: 8px;
+         }
+         #search-country{
+            width:300px;
+            height:70%;
+         }
+         .form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #6e707e;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #d1d3e2;
+  border-radius: 0.35rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.header-data{
+   background-color:#f9f9f9;
+   height:17.5px;
+   border-radius: 8px 8px 0 0;
+   display:flex;
+   flex-direction:row;
+}
+
+.data-header-text{
+   color:#236e90;
+   font-weight:bold;
+   margin-left:15px;
+   font-size:10.5px;
+   text-align:center;
+   transform:translateY(1px);
+}
+
+.expand-btn{
+   font-weight:bold;
+   margin-left:15px;
+   font-size:10.5px;
+   text-align:center;
+   transform:translateY(1px);
+}
+hr{
+   margin:2px;
+   padding-left:5px;
+   padding-right:5px;
+}
+
+.subheader-content{
+   display:flex;
+   flex-direction:row;
+}
+
+.btn {
+   height:5px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: var(--gap);
+  padding: 0.6rem;
+  cursor: pointer;
+  border-radius:8px;
+  border: none;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.bx {
+  font-size: 1.1rem;
+}
+
+.dropdown {
+  position: absolute; 
+  width: 150px;
+  font-size:12px;
+  box-shadow: var(--shadow);
+  border-radius:8px;
+  background: white;
+  transition: all 0.1s cubic-bezier(0.16, 1, 0.5, 1);
+  top: 30px; 
+  right: -30px; 
+   z-index:999;
+  visibility: hidden;
+  opacity: 0;
+
+}
+
+.show {
+  transform: translateY(0rem);
+  visibility: visible;
+  opacity: 1;
+}
+
+.arrow {
+  transform: rotate(180deg);
+  transition: 0.2s ease;
+}
+
+.dropdown a {
+  display: flex;
+  align-items: center;
+  column-gap: var(--gap);
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown a:hover {
+  background-color: #013058;
+
+  color: white;
+}
+         .dropdown-container{
+            display:flex;
+            flex-direction:row;
+            height:200px;
+            width:600px;
+            background-color:#236e90;
+         }
+         .dropdown-inner-1,
+         .dropdown-inner-2{
+            margin:10px;
+            background:#eaeaea;
+            border-radius:8px;
+         }
+         .dropdown-label-container{
+            margin:5px;
+            background-color:#eaeaea;
+            height:20%;
+         }
+         .dropdown-selection-container{
+            margin:5px;
+            margin-left:10px;
+            margin-right:20px;
+            background-color:#eaeaea;
+            height:21%;
+            border-radius:100px;
+            border:0.25px solid rgb(184, 184, 184);
+         }
+         .connect-button{
+            background-color:#013058;
+            height:20%;
+            margin-top:50%;
+            margin-left:5%;
+            margin-right:5%;
+            border-radius:8px;
+         }
+
+         .dropdown-label{
+            padding:10px;
+            padding-left:12.5px;
+            font-size:13px;
+            font-weight:900;
+            transform:translatey(5px);
+            color:#20404f;
+            
+         }
+
+         .button-label{
+            padding:10px;
+            padding-left:1px;
+            font-size:13px;
+            font-weight:900;
+            color:#20404f;
+            
+         }
+
+         .button-label{
+            padding-left: 25%;
+            color:white;
+            transform:translatey(-2px);
+         }
+
+         .dropdown-form{
+            padding:14px;
+            padding-left:16px;
+         }
+         
+         #button{
+            background-color:#236e90;
+         }
+
+         
+         .indicator-texts-header{
+            background-color:#dbdbdb;
+            height:150px;
+            margin-left:25%;
+            margin-right:25%;
+         }
+
+         .indicator-texts-container{
+            background-color:white;
+            height:850px;
+            margin-top:20px;
+            padding-top:40px;
+            margin-bottom:10px;
+            display:flex;
+            flex-direction:row;
+            padding-left:11.5%;
+            padding-right:9%;
+            padding-bottom:50px;
+            margin-bottom:20px;
+         }
+
+         .indicator-texts-article-space{
+            margin-top:40px;
+            width:50%;
+            padding-right:8%;
+            border-right: 1.5px solid #dbdbdb;
+         }
+
+         .indicator-texts-chart-space{
+            width:50%;
+         }
+
+         .indicator-texts-article-space-header{
+            background-color:white;
+            height:40px;
+            padding:0px;
+            padding-left:25px;
+            padding-right:10px;
+            text-align:center;
+            color:#236e90;
+            
+         }
+
+         .indicator-texts-article-space-body{
+            margin-top:50px;
+            background-color:white;
+            padding-left:25px;
+            padding-right:25px;
+            padding-top:10px;
+            height: 500px;
+            box-sizing: border-box; 
+         }
+
+         #ti-chart-container {
+            margin-top:30%;
+            padding-left:12.5%;
+         }
+
+         
+        #title-1 {
+            color: white;
+            font-family: 'arial';
+            font-size: 125px;
+            font-weight: 900;
+            text-align: right;
+            transform: translateY(0px);
+            transform: translateX(-50px);
+        }
+
+
+
+      </style>
+   </head>
+   <body>
+      <div class="container-header">
+         <div class="header">
+             
+         </div>
+         <div class="tabs">
+            <div class="tab">
+               <div class="selector">
+                  <div class="selector-content" id="selector-1">About</div>
+               </div>
+            </div>
+            <div class="tab">
+               <div class="selector">
+                  <div class="selector-content" id="selector-2">Settings</div>
+               </div>
+            </div>
+            <div class="tab">
+               <div class="selector">
+                  <div class="selector-content" id="selector-3">Exit</div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="subheader">
+         <div id="title-1">Colombia</div>
+         
+               
+            </div>
+         </div>
+       </div>
+      <div class="container-section">
+         <!-- Add a container for left-menu and card-table -->
+         <div class="left-menu">
+
+            <div class ='header-data' id="table">
+               <div class="data-header-text">
+                  Summary</div> 
+               <div class="expand-btn" onclick="expandSummary()">
+                  <img id="arrow-fig" src="static/icons/arrow-right-square-fill.svg" alt="expand-right">
+               </div> 
+            </div>
+            <hr>
+            <div class="container-left-top">
+               <iframe src="static/tables/x5yearx.html" frameborder="0" width="90%" height="100%"></iframe>
+            </div>
+            <div class ='header-data' id="table">
+               <div class="data-header-text">
+                  Factsheet</div> 
+               <div class="expand-btn"  onclick="expandFactsheet()">
+                  <img id="arrow-fig" src="static/icons/arrow-right-square-fill.svg" alt="expand-right">
+               </div> 
+            </div>
+            <hr>
+            <div class="container-left-bottom" id="piechart">
+               
+            </div>
+         </div>
+         <div class="data-space">
+            <div class = "title">
+               <div id="insights-header">
+                  Insights</div>
+            </div>
+            <hr>
+            <div class = "bullet-space">
+               <p>Annual GDP growth outdid expectations in Q1, despite interest rate
+                  hikes that were the sharpest on record. Turning to the present quarter,
+                  our panelists see the economy slowing year on year and contracting
+                  quarter on quarter as the effects of past rate hikes are increasingly felt.
+                  Available data thus far has been mixed: In April?May, business conditions
+                  in the manufacturing sector rebounded, while inflation cooled, supporting
+                  private spending. That said, consumer confidence fell and exports
+                  plunged 31% year on year in April. In other news, following allegations
+                  regarding the funding of President Gustavo Petro?s election campaign,
+                  the lower house of Congress froze debate on the government?s social
+                  reforms. The market reacted favorably; on the day the allegations were
+                  published, the Colombian peso was the best-performing major emergingmarket
+                  currency.
+               </p>
+            </div>
+         </div>
+         <div class="right-menu">
+            <div class ='header-data' id="table">
+               <div class="expand-btn" onclick="expandForecasts()" id="expand t r">
+                  <img id="arrow-fig" src="static/icons/arrow-left-square-fill.svg" alt="expand-left">
+               </div>
+                  <div class="data-header-text">
+                     Evolution of Forecasts</div> 
+            </div>
+            <hr>
+            <div class="container-right-top" id="evol-fcsts-gdp">
+            </div>
+
+            <div class="container-right-bottom" id="evol-fcsts-cpi" ></div>
+         </div>
+      </div>
+      <div class="menu-container d-flex align-items-center">
+         <!-- Left arrow -->
+         <div class="arrow" onclick="selectPreviousItem()">
+            <i class="fas fa-arrow-right"></i>
+         </div>
+         <div class="flex-shrink-0 tab">
+            <div class="selector">
+               <div class="selector-content menu-item active" data-target="#content-block1">Consumer Prices</div>
+            </div>
+         </div>
+         <div class="flex-shrink-0 tab">
+            <div class="selector">
+               <div class="selector-content menu-item" data-target="#content-block2">Interest Rate</div>
+            </div>
+         </div>
+         <div class="flex-shrink-0 tab">
+            <div class="selector">
+               <div class="selector-content menu-item" data-target="#content-block3">Exchange Rate</div>
+            </div>
+         </div>
+         <!-- Right arrow -->
+         <div class="arrow" onclick="selectNextItem()">
+            <i class="fas fa-arrow-left"></i>
+         </div>
+      </div>
+      <div class="data-space">
+         <div class="content" id="content-block1">
+            <div class="table-section">
+               <div class="region">
+                  <div class="chart-header"> Colombia in context</div>
+                  <div class="chart-subheader">Forecasts 2024 for Inflation, aop. for Latin America</div>
+                  <div id="region-container"></div>
+               </div>
+               <div id="table-container"><iframe src="static/tables/xInflationx-2.html" frameborder="0" width="95%" height="95%"></iframe></div>
+               <div class="spread">
+                  <div class="chart-header"> Consumer prices</div>
+                  <div class="chart-subheader">Panelist Spread, public and private</div>
+                  <div id="spread-container"></div>
+               </div>
+            </div>
+         </div>
+         <div class="content" id="content-block2">
+            <h2>Content for menu item 2 (Interest Rates)</h2>
+            <p>This is the content for menu item 2. Interest Rates data goes here...</p>
+         </div>
+         <div class="content" id="content-block3">
+            <h2>Content for menu item 3 (Exchange Rates)</h2>
+            <p>This is the content for menu item 3. Exchange Rates data goes here...</p>
+         </div>
+         <div class="content" id="content-block4">
+            <h2>Content for menu item 4 (Current Account and Trade Balance)</h2>
+            <p>This is the content for menu item 4. Current Account and Trade Balance data goes here...</p>
+         </div>
+         <div class="content" id="content-block5">
+            <h2>Content for menu item 5 (Exports and Imports)</h2>
+            <p>This is the content for menu item 5. Exports and Imports data goes here...</p>
+         </div>
+         <div class="content" id="content-block6">
+            <h2>Content for menu item 6 (International Reserves and External Debt)</h2>
+            <p>This is the content for menu item 6. International Reserves and External Debt data goes here...</p>
+         </div>
+         <!-- Add more content sections for other menu items as needed -->
+      </div>
+      <div class="indicator-texts-header"></div>
+      <div class="indicator-texts-container">
+         <div class="indicator-texts-article-space">
+            <div class="indicator-texts-article-space-header"> 
+               <div id="indicator-texts-title"><h1>GDP growth improves in Q1</h1></div>
+            </div>
+            <div class="indicator-texts-article-space-body">
+               <div id="indicator-texts-body">
+                  <p>GDP growth sped up to 3.0% year on year in the first quarter, from 2.2% in the fourth quarter of last year.   Household spending rose 2.9% in Q1, marking the weakest expansion since Q1 2021 (Q4 2022: +3.9% yoy). Public consumption flatlined in Q1 (Q4 2022: -6.3% yoy). Meanwhile, fixed investment contracted 1.0% in Q1, marking the worst reading since Q4 2020 (Q4 2022: +8.0% yoy).    On the external front, exports of goods and services rebounded, growing 4.9% in Q1 (Q4 2022: -0.9% yoy). Conversely, imports of goods and services deteriorated, contracting 7.4% in Q1 (Q4 2022: +7.5% yoy), marking the worst performance in over two years.   On a seasonally adjusted quarter-on-quarter basis, economic growth accelerated to 1.4% in Q1, following the previous quarter's 0.4% increase. Q1's reading marked the best result since Q4 2021.</p><p>Soaring inflation and interest rates knocked consumer spending in Q1, and political uncertainty may have hurt investment. That said, public spending stabilizing and exports rebounding ensured that GDP growth picked up in Q1. Turning to Q2, our panelists expect economic growth to slow more sharply, with private spending continuing to be hurt by elevated inflation and interest rates.  Analysts at Goldman Sachs said: “Going forward, we expect economic activity to moderate on the back of high inflation, tighter financial conditions, and a weaker impulse from external activity. Moreover, heightened policy uncertainty due to ambitious policy reforms already approved and a heavy legislative agenda for major social reforms with potential macro impact may weigh further on business sentiment and private investment.”</p>
+            </div>
+         </div></div>
+         <div class="indicator-texts-chart-space">
+            <div id="ti-chart-container"></div>
+         </div>
+      </div>
+      <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/highcharts-more.js"></script>
+      <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+      <script src="https://code.highcharts.com/modules/exporting.js"></script>
+      <script src="https://code.highcharts.com/modules/export-data.js"></script>
+      <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="static/js/spread-compact.js"></script>
+      <script src="static/js/regional-comparison.js"></script>
+      <script src="static/js/longTerm.js"></script>
+      <script src="static/js/evolution-fcsts.js"></script>
+      <script src="static/js/evolution-fcsts-cpi.js"></script>
+      <script src="static/js/evolution-fcsts-gdp.js"></script>
+      <script src="static/js/stateVarFlex.js"></script>
+      <script src="static/js/expandForecasts.js"></script>
+      <script src="static/js/expandSummary.js"></script>
+      <script src="static/js/expandFactsheet.js"></script>
+      <script src="static/js/gdp-factsheet.js"></script>
+      <script src="static/js/textindicator-chart.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.5.0/js/bootstrap.bundle.min.js"></script>
+
+<script>
+   // JavaScript code starts here
+   document.addEventListener('DOMContentLoaded', function () {
+     // Get the elements you need
+     const dropdownItems = document.querySelectorAll('.dropdown#dropdown-country a');
+     const selectedCountryElement = document.getElementById('selectedCountry');
+ 
+     // Define a variable to store the selected country
+     let selectedCountry = '';
+ 
+     // Add click event listeners to the dropdown items
+     dropdownItems.forEach(function (item) {
+       item.addEventListener('click', function () {
+         // Update the selectedCountry variable when an option is clicked
+         selectedCountry = item.textContent.trim();
+         // Update the button label with the selected country
+         selectedCountryElement.textContent = selectedCountry;
+       });
+     });
+   });
+</script>
+<script>
+
+   // JavaScript code
+const dropdownBtn = document.getElementsByClassName("btn")[0]; // Select the first element with class "btn"
+const dropdownMenu = document.getElementById("dropdown-country");
+const toggleArrow = document.getElementById("arrow");
+
+const toggleDropdown = function () {
+dropdownMenu.classList.toggle("show");
+toggleArrow.classList.toggle("arrow");
+};
+
+dropdownBtn.addEventListener("click", function (e) {
+e.stopPropagation();
+toggleDropdown();
+});
+
+</script>
+      <script>
+         // Smooth scrolling function
+         function smoothScroll(target) {
+           const element = document.querySelector(target);
+           if (element) {
+             element.scrollIntoView({
+               behavior: 'smooth',
+               block: 'start'
+             });
+           }
+         }
+         
+         // Function to show only the specified content section and hide others
+         function showOnlyContent(contentId) {
+           const contents = document.querySelectorAll('.content');
+           contents.forEach(content => {
+             if (content.id === contentId) {
+               content.style.display = 'block';
+             } else {
+               content.style.display = 'none';
+             }
+           });
+         }
+         
+         // Event listener for menu items
+         document.addEventListener('click', function (event) {
+           if (event.target.classList.contains('menu-item')) {
+             event.preventDefault();
+             const target = event.target.getAttribute('data-target');
+             smoothScroll(target);
+         
+             // Show the corresponding content sections and hide others
+             showOnlyContent(target.substring(1));
+             setActiveMenuItem(target); // Update the active menu item based on the data-target
+           }
+         });
+         
+         // Function to add "active-menu-item" class to the selected menu item
+         function setActiveMenuItem(target) {
+           const items = document.querySelectorAll('.menu-item');
+           items.forEach(item => {
+             if (item.getAttribute('data-target') === target) {
+               item.classList.add('active-menu-item');
+             } else {
+               item.classList.remove('active-menu-item');
+             }
+           });
+         }
+         
+         // Function to show the specified content section and update the active menu item
+         function showContent(contentId) {
+           const contents = document.querySelectorAll('.content');
+           contents.forEach(content => {
+             if (content.id === contentId) {
+               content.style.display = 'block';
+               setActiveMenuItem('#' + contentId); // Set the active menu item based on the contentId
+             } else {
+               content.style.display = 'none';
+             }
+           });
+         }
+         
+         // Add functions to select the previous or next menu item
+         function selectPreviousItem() {
+           const items = document.querySelectorAll('.menu-item');
+           let currentIndex = -1;
+         
+           // Find the index of the currently active menu item
+           for (let i = 0; i < items.length; i++) {
+             if (items[i].classList.contains('active-menu-item')) {
+               currentIndex = i;
+               break;
+             }
+           }
+         
+           if (currentIndex !== -1) {
+             // Remove 'active-menu-item' class from the current menu item
+             items[currentIndex].classList.remove('active-menu-item');
+         
+             // Calculate the index of the previous menu item (or loop to the last item if the first item is active)
+             const previousIndex = currentIndex === 0 ? items.length - 1 : currentIndex - 1;
+         
+             // Add 'active-menu-item' class to the previous menu item
+             items[previousIndex].classList.add('active-menu-item');
+         
+             // Display the corresponding content section
+             showContent(items[previousIndex].getAttribute('data-target').substring(1));
+           }
+         }
+         
+         function selectNextItem() {
+           const items = document.querySelectorAll('.menu-item');
+           let currentIndex = -1;
+         
+           // Find the index of the currently active menu item
+           for (let i = 0; i < items.length; i++) {
+             if (items[i].classList.contains('active-menu-item')) {
+               currentIndex = i;
+               break;
+             }
+           }
+         
+           if (currentIndex !== -1) {
+             // Remove 'active-menu-item' class from the current menu item
+             items[currentIndex].classList.remove('active-menu-item');
+         
+             // Calculate the index of the next menu item (or loop to the first item if the last item is active)
+             const nextIndex = currentIndex === items.length - 1 ? 0 : currentIndex + 1;
+         
+             // Add 'active-menu-item' class to the next menu item
+             items[nextIndex].classList.add('active-menu-item');
+         
+             // Display the corresponding content section
+             showContent(items[nextIndex].getAttribute('data-target').substring(1));
+           }
+         }
+         
+         // Show the content for menu item 1 by default
+         showContent('content-block1');      
+             
+      </script>
+
+
+   </body>
+</html>
