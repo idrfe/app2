@@ -7,7 +7,7 @@
 <style>
 .header {
 	font-weight:700;
-   	color:#164875;
+   	color:white;
 	text-align:center;
 	vertical-align:middle;
 }
@@ -18,24 +18,29 @@
 	text-align:left;
    	color:#164875;
 	vertical-align:middle;
-	background-color:#eaeaea;
+	background-color:#679ebf;
+   color:white;
+   width:200px;
 }
 .year-header {
 	border-bottom:.5pt solid #164B75;
-	text-align:right;
+	text-align:center;
 	vertical-align:middle;
-	background-color:#eaeaea;
+	background-color:#679ebf;
+   color:white;
 }
 .panelist, .panelist-bold {
     padding-left: 5px;
 	text-align:left;
 	vertical-align:middle;
+   color:#3d6389;
+   font-weight:bold;
 }
 .panelist-bold{
     font-weight:700
 }
 .value, .value-bold {
-	text-align:right;
+	text-align:center;
 	vertical-align:middle;
 }
 .value-bold{
@@ -48,29 +53,48 @@ tr:nth-child(odd) {
 
 table {
     height: 16px;
-    font-size:9pt;
+    font-size:7.75pt;
     font-weight:400;
     font-family:Arial,sans-serif;
     border-collapse: collapse;
     border:0;
     cellpadding:0;
     cellspacing:0;
-
-    width:456px;
+    font-family: "Montserrat", sans-serif !important;
+    border-radius:8px;
+   background-color: #f3f3f3;
+    width:525px;
 
 }
 
+tr{
+    height:15px;
+    border-bottom: 1px dashed #679ebf; 
+    transition: 0.3s color;
+}
+
+tr:first-child,
+tr:last-child {
+  border:none;
+  border-radius:8px;
+}
+tr:hover{
+   background-color:white;
+   font-weight:bold;
+}
+
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
    <table>
    <colgroup>
-       <col width="184">
-       <col span="2" width="68">
+
+       <col>
    </colgroup>
    
-  <tbody><tr height="24" class="header" style="background-color:#eaeaea">
+  <tbody><tr height="26" class="header" id="header" style="background-color:#679ebf">
      <th></th>
      <th colspan="2">Consumer Prices<br>variation in %, eop</th>
      <th colspan="2">Consumer Prices<br>variation in %, aop</th>
@@ -78,7 +102,7 @@ table {
 
    <!-- Here we paste the content of the Table. -->
    
-      <tr>
+      <tr id="subheader">
          <td class="panelist-header"><b>Individual Forecasts</b></td>
          <td class="year-header"><b>2023</b></td>
          <td class="year-header"><b>2024</b></td>
@@ -500,88 +524,7 @@ table {
          <td class="value">11.8</td>
          <td class="value">6.1</td>
       </tr>
-      
-      <tr>
-         <td class="panelist-header"><b>Summary</b></td>
-         <td class="year-header"></td>
-         <td class="year-header"></td>
-         
-         <td class="year-header"></td>
-         <td class="year-header"></td>
-      </tr>
-      
-      <tr>
-         <td class="panelist">Minimum</td>
-         <td class="value">7.2</td>
-         <td class="value">3.5</td>
-         
-         <td class="value">8.9</td>
-         <td class="value">4.0</td>
-      </tr>
-      
-      <tr>
-         <td class="panelist">Maximum</td>
-         <td class="value">11.4</td>
-         <td class="value">6.4</td>
-         
-         <td class="value">12.9</td>
-         <td class="value">7.5</td>
-      </tr>
-      
-      <tr>
-         <td class="panelist">Median</td>
-         <td class="value">9.0</td>
-         <td class="value">4.5</td>
-         
-         <td class="value">11.6</td>
-         <td class="value">5.8</td>
-      </tr>
-      
-      <tr>
-         <td class="panelist-bold">Consensus</td>
-         <td class="value-bold">8.9</td>
-         <td class="value-bold">4.6</td>
-         
-         <td class="value-bold">11.4</td>
-         <td class="value-bold">5.7</td>
-      </tr>
-      
-      <tr>
-         <td class="panelist-header"><b>History</b></td>
-         <td class="year-header"></td>
-         <td class="year-header"></td>
-         
-         <td class="year-header"></td>
-         <td class="year-header"></td>
-      </tr>
-      
-      <tr>
-         <td class="panelist">30 days ago</td>
-         <td class="value">8.9</td>
-         <td class="value">4.6</td>
-         
-         <td class="value">11.4</td>
-         <td class="value">5.7</td>
-      </tr>
-      
-      <tr>
-         <td class="panelist">60 days ago</td>
-         <td class="value">9.0</td>
-         <td class="value">4.6</td>
-         
-         <td class="value">11.4</td>
-         <td class="value">5.7</td>
-      </tr>
-      
-      <tr>
-         <td class="panelist">90 days ago</td>
-         <td class="value">8.8</td>
-         <td class="value">4.6</td>
-         
-         <td class="value">11.4</td>
-         <td class="value">5.7</td>
-      </tr>
-      
+ 
    </tbody></table>
    
    

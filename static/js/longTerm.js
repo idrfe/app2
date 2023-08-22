@@ -2,7 +2,8 @@ Highcharts.chart('long-term', {
   chart: {
       margin:22.5,
       marginBottom:45,
-      marginLeft:45// Set the right margin to create extra space
+      marginLeft:45,// Set the right margin to create extra space,
+      backgroundColor: '#f0f0f0'
     },
     title: {
       text: '',
@@ -28,7 +29,7 @@ Highcharts.chart('long-term', {
         {
           from: 10, 
           to: 16,
-          color: 'rgba(234, 234, 234, 0.45)'
+          color: 'rgba(220, 220, 220, 0.45)'
         },
         
       ],
